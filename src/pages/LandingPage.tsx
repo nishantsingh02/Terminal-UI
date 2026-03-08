@@ -63,7 +63,7 @@ export default function LandingPage() {
             </button>
             <ThemeToggle />
             <a
-              href="https://github.com/nishantsingh02"
+              href="https://github.com/nishantsingh02/Terminal-UI.git"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
@@ -276,7 +276,7 @@ export default function LandingPage() {
           <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} termui. Built by{" "}
-              <a href="https://x.com/nishantsingh211" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline underline-offset-4">
+              <a href="https://nishants.me" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline underline-offset-4">
                 Nishant Singh
               </a>
             </p>
