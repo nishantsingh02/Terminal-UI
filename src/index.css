@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+
+    --terminal-cyan: 0 0% 45%;
+    --terminal-magenta: 0 0% 45%;
+    --terminal-amber: 0 0% 45%;
+    --terminal-red: 0 84.2% 60.2%;
+    --terminal-blue: 0 0% 45%;
+    --terminal-dim: 0 0% 63.9%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 0 0% 9%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96.1%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 89.8%;
+    --sidebar-ring: 0 0% 3.9%;
+  }
+
+  .dark {
+    --background: 220 16% 4%;
+    --foreground: 142 40% 75%;
+
+    --card: 220 14% 7%;
+    --card-foreground: 142 40% 75%;
+
+    --popover: 220 14% 7%;
+    --popover-foreground: 142 40% 75%;
+
+    --primary: 142 72% 46%;
+    --primary-foreground: 220 16% 4%;
+
+    --secondary: 220 12% 12%;
+    --secondary-foreground: 142 40% 65%;
+
+    --muted: 220 12% 10%;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 220 12% 10%;
+    --accent-foreground: 142 40% 75%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 16%;
+    --input: 220 12% 16%;
+    --ring: 142 72% 46%;
+
+    --terminal-cyan: 185 80% 55%;
+    --terminal-magenta: 300 60% 65%;
+    --terminal-amber: 46 90% 55%;
+    --terminal-red: 0 72% 55%;
+    --terminal-blue: 210 80% 60%;
+    --terminal-dim: 220 8% 36%;
+
+    --sidebar-background: 220 16% 4%;
+    --sidebar-foreground: 142 40% 65%;
+    --sidebar-primary: 142 72% 46%;
+    --sidebar-primary-foreground: 220 16% 4%;
+    --sidebar-accent: 220 12% 10%;
+    --sidebar-accent-foreground: 142 40% 75%;
+    --sidebar-border: 220 12% 14%;
+    --sidebar-ring: 142 72% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .dark body {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  ::selection {
+    background: hsl(0 0% 9% / 0.12);
+  }
+
+  .dark ::selection {
+    background: hsl(142 72% 46% / 0.25);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .terminal-glow {
+    text-shadow: 0 0 10px hsl(142 72% 46% / 0.5), 0 0 20px hsl(142 72% 46% / 0.2);
+  }
+
+  .terminal-border {
+    border: 1px solid hsl(var(--border));
+  }
+
+  .terminal-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.03) 2px,
+      hsl(0 0% 0% / 0.03) 4px
+    );
+  }
+
+  .typing-cursor::after {
+    content: '▊';
+    animation: blink 1s step-end infinite;
+    color: hsl(var(--foreground));
+    opacity: 0.7;
+  }
+
+  .dark .typing-cursor::after {
+    color: hsl(var(--primary));
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+}
+
+/* View Transitions API - circular reveal for theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: theme-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--theme-r, 100vmax) at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+}
